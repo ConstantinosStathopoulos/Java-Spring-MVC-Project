@@ -1,4 +1,4 @@
-package gr.hua.dit.internApp;
+package gr.hua.dit.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +13,8 @@ public class Student {
 	//for postgres we use sequence type in generatedvalue
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "am")
-	private int am;
+	@Column(name = "id")
+	private int id;
 	
 	@Column(name = "name")
 	private String name;
@@ -37,6 +37,7 @@ public class Student {
 	@Column(name = "allowed")
 	private boolean allowed;
 
+	
 
 public Student() {
 		// TODO Auto-generated constructor stub
@@ -47,6 +48,7 @@ public Student() {
 public Student( String name, String surname, int lessons, int year, int department, double average,
 		boolean allowed) {
 	super();
+	
 	this.name = name;
 	this.surname = surname;
 	this.lessons = lessons;
@@ -58,12 +60,12 @@ public Student( String name, String surname, int lessons, int year, int departme
 
 
 //Getters-Setters
-public int getAm() {
-	return am;
+public int getId() {
+	return id;
 }
 
-public void setAm(int am) {
-	this.am = am;
+public void setId(int id) {
+	this.id = id;
 }
 
 public String getName() {
@@ -121,7 +123,10 @@ public boolean isAllowed() {
 public void setAllowed(boolean allowed) {
 	this.allowed = allowed;
 }
+@Override
+public String toString() {
+        return "Student [id=" + id + ", firstName=" + name +
+        		", lastName=" + surname + ", lessons=" + lessons + ", year=" + year + ", department=" + department + ", average=" + average + ", allowed=" + allowed +"]";
 
-
-
+}
 }

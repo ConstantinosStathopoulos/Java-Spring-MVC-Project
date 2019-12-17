@@ -1,4 +1,4 @@
-package gr.hua.dit.internApp;
+package gr.hua.dit.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,9 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "companies.data")
-public class Companies {
-
+@Table(name = "career_office.data")
+public class CareerOffice {
 	@Id
 	@Column(name = "id")
 	private int id;
@@ -16,16 +15,20 @@ public class Companies {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "surname")
+	private String surname;
+
 	
-	
-	public Companies() {
+	public CareerOffice() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Companies(int id, String name) {
+	
+	public CareerOffice(int id, String name, String surname) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.surname = surname;
 	}
 
 	public int getId() {
@@ -43,7 +46,12 @@ public class Companies {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 }
