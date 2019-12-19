@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <html>
@@ -18,5 +17,24 @@
             </tr>
          </table>  
       </form:form>
+      <form:form method = "GET" action = "All_Positions">
+         <table>
+            <tr>
+               <td>
+                  <input type = "submit" value = "See All Positions List"/>
+               </td>
+            </tr>
+         </table>  
+      </form:form>
+      <form:form method = "GET" action = "Accepted_Positions">
+         <table>
+            <tr>
+               <td>
+                  <input type = "submit" value = "See Accepted Positions List"/>
+               </td>
+            </tr>
+         </table>  
+      </form:form>
    </body>
 </html>
+

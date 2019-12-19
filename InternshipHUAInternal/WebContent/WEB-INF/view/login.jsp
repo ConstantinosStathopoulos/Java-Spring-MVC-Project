@@ -8,28 +8,25 @@
 	<link type="text/css" rel="stylesheet"
         href="${pageContext.request.contextPath}/resources/css/login.css" />
 	<title>Login Page</title>
-	<link rel="stylesheet" href="WebContent/css/login.css">
+	<link rel="stylesheet" href="WebContent/resources/css/login.css">
 	</head>
     <body>
         <h1 id="banner">Login to Security Demo</h1>  
-        <form name="f" action="<c:url value='j_spring_security_check'/>"
-                    method="POST">
-            <table>
-                <tr>
-                    <td>Username:</td>
-                    <td><input type='text' name='username' /></td>
-                </tr>
-                <tr>
-                    <td><br>Password:</td>
-                    <td><br><input type='password' name='password'></td>
-                </tr>
-                <tr>
-                    <td colspan="2">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan='2'><input name="submit" type="submit">&nbsp;<input name="reset" type="reset"></td>
-                </tr>
-            </table>
-        </form>
+        <form:form action="${pageContext.request.contextPath}/authUser" method="POST">
+        <c:if test="${param.error != null}">
+                <i>Sorry! Invalid username/password!</i>
+        </c:if>
+        <div class="field">
+                        <label>User Name</label>
+                        <input type="text" name="username"/>
+                </div>
+                <div class="field">
+                        <label>Password</label>
+                        <input type="password" name="password"/>
+                </div>
+                <div class="field">
+                                <input type="submit" value="Login" />
+                        </div>
+        </form:form>
     </body>
 </html>

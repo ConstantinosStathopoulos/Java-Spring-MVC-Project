@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import gr.hua.dit.DAO.PositionsDAO;
 import gr.hua.dit.DAO.StudentDAO;
+import gr.hua.dit.entity.Positions;
 import gr.hua.dit.entity.Student;
 
 @Controller
@@ -43,5 +45,24 @@ public class CareerOfficeController {
 	   public String showOfficeMenu() {
 	      return "careerOfficeMenu";
 	   }
-	
+		
+		
+	@Autowired
+	  private PositionsDAO positionsDAO;
+		 @RequestMapping(value = "/All_Positions", method = RequestMethod.GET)
+			public String listPositions(Model model) {
+				List<Positions> positions = positionsDAO.getAllPositions();
+		        // add the customers to the model
+		        model.addAttribute("positions",positions);
+				return "allPositions";
+			}
+		 
+		 @RequestMapping(value = "/Accepted_Positions", method = RequestMethod.GET)
+			public String listAcceptedPositions(Model model) {
+				List<Positions> positions = positionsDAO.getAcceptedPositions();
+		        // add the customers to the model
+		        model.addAttribute("positions",positions);
+				return "acceptedPositions";
+			}
+
 }

@@ -29,7 +29,7 @@ public class StudentDAOImpl implements StudentDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		// create a query
-		Query<Student> query = currentSession.createQuery("from Student", 
+		Query<Student> query = currentSession.createQuery("from Student where lessons<4 and year<5 and year>2 and allowed=false", 
 				Student.class);
 		
 		

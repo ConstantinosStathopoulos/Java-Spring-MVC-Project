@@ -68,6 +68,10 @@ public class Positions {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+	        return "Position [id=" + id + ", companyName =" + name +
+	        		", positionSubject=" + subject + ", allowed=" + allowed +"]";
+	}
 	
 }
