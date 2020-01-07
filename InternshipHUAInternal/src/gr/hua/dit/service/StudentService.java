@@ -1,16 +1,13 @@
-package gr.hua.dit.DAO;
+package gr.hua.dit.service;
+
 import java.util.List;
-
-
 
 import gr.hua.dit.entity.Student;
 
+public interface StudentService {
 
-public interface StudentDAO {
-	
 	public List<Student> getStudents();
 
 	public void updateStudent(Student theStudent);
 
-	
 }

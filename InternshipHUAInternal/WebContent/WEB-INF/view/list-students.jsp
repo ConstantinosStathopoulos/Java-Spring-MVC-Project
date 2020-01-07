@@ -7,47 +7,60 @@
 <title>List Students</title>
 <!-- reference our style sheet -->
 <link type="text/css" rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/css/listview.css" />
+	href="${pageContext.request.contextPath}/resources/css/listview.css" />
 </head>
 <body>
-       
-        <div id="container">
-                <div id="content">
-                        <!--  add our html table here -->
-                        <table>
-                                <tr>
-                                		<th>ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>lessons</th>
-                                        <th>year</th>
-                                        <th>average</th>
-                                        <th>allowed</th>
-                                </tr>
-                                <!-- loop over and print our customers -->
-                                <c:forEach var="tempStudents" items="${students}">
-                                        <tr>
-                                        		<td>${tempStudents.id}</td>
-                                                <td>${tempStudents.name}</td>
-                                                <td>${tempStudents.surname}</td>
-                                                <td>${tempStudents.lessons}</td>
-                                                <td>${tempStudents.year}</td>
-                                                <td>${tempStudents.average}</td>
-                                                <td>${tempStudents.allowed}</td>
-                                        </tr>
-                                </c:forEach>
-                        </table>
-                </div>
-        </div>
-        <h2>Button to return to home (for Career Office user home)</h2>
-      <form:form method = "GET" action = "redirectHome">
-         <table>
-            <tr>
-               <td>
-                  <input type = "submit" value = "Back to home"/>
-               </td>
-            </tr>
-         </table>  
-      </form:form>
+
+	<div id="wrapper">
+		<div id="header">
+			<h2>Student Managment System</h2>
+		</div>
+	</div>
+
+	<div id="container">
+		<div id="content">
+			<!--  add our html table here -->
+			<form:form action="updateStudentAccess" modelAttribute="student" method="POST">
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Lessons</th>
+					<th>Year</th>
+					<th>Average</th>
+					<th>Allow</th>
+				</tr>
+				<!-- loop over and print our students -->
+				<c:forEach var="tempStudents" items="${students}">
+					<tr>
+						<td>${tempStudents.id}</td>
+						<td>${tempStudents.name}</td>
+						<td>${tempStudents.surname}</td>
+						<td>${tempStudents.lessons}</td>
+						<td>${tempStudents.year}</td>
+						<td>${tempStudents.average}</td>
+						<td><input type="checkbox" checked="checked" value="${tempStudent.id}"/></td>
+					</tr>
+				</c:forEach>
+			
+			</table>
+			<br>
+			<input type="submit" value="Grand Access"
+				onclick="updateStudentAccess" class="add-button">
+			
+			</form:form>
+			
+		</div>
+
+	</div>
+	<h2>Button to return to home (for Career Office user home)</h2>
+	<form:form method="GET" action="redirectHome">
+		<table>
+			<tr>
+				<td><input type="submit" value="Back to home" /></td>
+			</tr>
+		</table>
+	</form:form>
 </body>
 </html>

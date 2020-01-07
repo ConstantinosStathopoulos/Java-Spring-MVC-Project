@@ -1,7 +1,7 @@
 package gr.hua.dit.DAO;
 import java.util.List;
 
-import javax.transaction.Transactional;
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,15 +21,14 @@ public class StudentDAOImpl implements StudentDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	//for list of all student
+	//for list of all student, sorted by id
 	@Override
-	@Transactional
 	public List<Student> getStudents() {
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		// create a query
-		Query<Student> query = currentSession.createQuery("from Student where lessons<4 and year<5 and year>2 and allowed=false", 
+		Query<Student> query = currentSession.createQuery("from Student where lessons<4 and year<5 and year>2 and allowed=false order by id", 
 				Student.class);
 		
 		
@@ -39,24 +38,18 @@ public class StudentDAOImpl implements StudentDAO {
 		//return the results
 		return students;
 	}
+
+	@Override
+	public void updateStudent(Student theStudent) {
+		// get current hibernate session
+				Session currentSession = sessionFactory.getCurrentSession();
+				
+		//update the customer
+				
+				theStudent.setAllowed(true);
+				currentSession.update(theStudent);
+		
+	}
 	
-	//for list of allowed students
-//	@Override
-//	public List<Student> getAllowedStudents(){
-//		
-//		// get current hibernate session
-//				Session currentSession = sessionFactory.getCurrentSession();
-//				
-//				// create a query
-//				Query<Student> query = currentSession.createQuery("from Student s where s.allowed='true' order by id", 
-//						Student.class);
-//				
-//				
-//				// execute the query and get the results list
-//				List<Student> AllowedStudents = query.getResultList();
-//						
-//				//return the results
-//				return AllowedStudents;
-//	}
 
 }

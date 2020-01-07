@@ -2,13 +2,13 @@ package gr.hua.dit.DAO;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import gr.hua.dit.entity.Positions;
 
@@ -31,12 +31,14 @@ public class PositionsDAOImpl implements PositionsDAO{
 	}
 	
 	
-	  @Override
-	  
-	  @Transactional public List<Positions> getAcceptedPositions(){ Session
-	  currentSession = sessionFactory.getCurrentSession(); Query<Positions> query =
-	  currentSession.createQuery("from Positions where allowed=true ",
-	  Positions.class); List<Positions> positions = query.getResultList(); return
-	  positions; }
+	  @Override  
+	  public List<Positions> getAcceptedPositions(){ 
+		  Session currentSession = sessionFactory.getCurrentSession(); 
+		  Query<Positions> query =
+				  currentSession.createQuery("from Positions where allowed=true ",
+						  Positions.class); 
+	  List<Positions> positions = query.getResultList(); 
+	  return positions; 
+	  }
 	 
 }
