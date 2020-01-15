@@ -17,22 +17,26 @@ public class Positions {
 	private String name;
 
 	@Column(name = "category")
-	private String subject;
+	private String category;
 	
 	@Column(name = "allowed")
 	private boolean allowed;
+	
+	@Column(name = "department")
+	private String department;
 
 	public Positions() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Positions(String name, String subject, boolean allowed) {
+	public Positions(String name, String category, boolean allowed, String department) {
 		super();
 		
 		this.name = name;
-		this.subject = subject;
+		this.category = category;
 		this.allowed = allowed;
+		this.department = department;
 	}
 
 	public int getId() {
@@ -51,12 +55,12 @@ public class Positions {
 		this.name = name;
 	}
 
-	public String getSubject() {
-		return subject;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public boolean isAllowed() {
@@ -67,11 +71,19 @@ public class Positions {
 		this.allowed = allowed;
 	}
 	
+	public String getDepartment() {
+		return department;
+	}
+	
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	
 	
 	@Override
 	public String toString() {
 	        return "Position [id=" + id + ", companyName =" + name +
-	        		", positionSubject=" + subject + ", allowed=" + allowed +"]";
+	        		", positionCategory=" + category + ", department =" + department + ", allowed=" + allowed +"]";
 	}
 	
 }

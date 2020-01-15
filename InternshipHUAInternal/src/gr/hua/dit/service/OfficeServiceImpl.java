@@ -29,5 +29,12 @@ public class OfficeServiceImpl implements OfficeService {
 		// TODO Auto-generated method stub
 		return positionsDAO.getAcceptedPositions();
 	}
+	
+	@Override
+	@Transactional
+	public void updatePositions(int id,String department) {
+		
+		positionsDAO.updatePositions(id,department);
+	}
 
 }

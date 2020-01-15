@@ -3,7 +3,7 @@
 <%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <html>
    <head>
-      <title>CareerOffice Menu</title>
+      <title>OfficeMenu</title>
    </head>
 
    <body>
@@ -12,16 +12,16 @@
          <table>
             <tr>
                <td>
-                  <input type = "submit" value = "See Student List"/>
+                  <input type = "submit" value = "Manage Students"/>
                </td>
             </tr>
          </table>  
       </form:form>
-      <form:form method = "GET" action = "All_Positions">
+      <form:form method = "GET" action = "Manage_Positions">
          <table>
             <tr>
                <td>
-                  <input type = "submit" value = "See All Positions List"/>
+                  <input type = "submit" value = "Manage Positions"/>
                </td>
             </tr>
          </table>  
@@ -30,7 +30,7 @@
          <table>
             <tr>
                <td>
-                  <input type = "submit" value = "See Accepted Positions List"/>
+                  <input type = "submit" value = "Accepted Positions List"/>
                </td>
             </tr>
          </table>  

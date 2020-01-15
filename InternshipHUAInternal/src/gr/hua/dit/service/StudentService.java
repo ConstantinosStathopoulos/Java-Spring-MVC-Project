@@ -8,6 +8,6 @@ public interface StudentService {
 
 	public List<Student> getStudents();
 
-	public void updateStudent(Student theStudent);
+	public void updateStudent(int id);
 
 }

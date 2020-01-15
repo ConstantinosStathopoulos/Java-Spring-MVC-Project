@@ -22,8 +22,8 @@ public class StudentServiceImpl implements StudentService {
 	}
 	@Override
 	@Transactional
-	public void updateStudent(Student theStudent) {
-		studentDAO.updateStudent(theStudent);
+	public void updateStudent(int id) {
+		studentDAO.updateStudent(id);
 		
 	}
 	

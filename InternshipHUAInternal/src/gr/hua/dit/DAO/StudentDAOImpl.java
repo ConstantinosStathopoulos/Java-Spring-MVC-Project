@@ -40,14 +40,14 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public void updateStudent(Student theStudent) {
+	public void updateStudent(int id) {
 		// get current hibernate session
 				Session currentSession = sessionFactory.getCurrentSession();
 				
-		//update the customer
-				
-				theStudent.setAllowed(true);
-				currentSession.update(theStudent);
+		//update the student
+				Student student = currentSession.get(Student.class, id);
+				student.setAllowed(true);
+				System.out.println("Done!");
 		
 	}
 	

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import gr.hua.dit.entity.Positions;
 import gr.hua.dit.entity.Student;
@@ -50,12 +50,12 @@ public class CareerOfficeController {
 		
 	@Autowired
 	  private OfficeService officeService;
-		 @RequestMapping(value = "/All_Positions", method = RequestMethod.GET)
+		 @RequestMapping(value = "/Manage_Positions", method = RequestMethod.GET)
 			public String listPositions(Model model) {
 				List<Positions> positions = officeService.getAllPositions();
 		        // add the customers to the model
 		        model.addAttribute("positions",positions);
-				return "allPositions";
+				return "managePositions";
 			}
 		 
 		 @RequestMapping(value = "/Accepted_Positions", method = RequestMethod.GET)
@@ -66,14 +66,27 @@ public class CareerOfficeController {
 				return "acceptedPositions";
 			}
 		 
-		 @RequestMapping(value = "/updateStudentAccess", method = RequestMethod.POST)
-		 	public String updateStudentAccess (@ModelAttribute("student") Student theStudent) {
-		 	//update the students
-			 studentService.updateStudent(theStudent);
-			 
+		 @RequestMapping(value = "/updateStudentAccess", method = RequestMethod.GET)
+		 	public String updateStudentAccess (Model model, @RequestParam String CurrentUpdate) {
+			 List<Student> students = studentService.getStudents();
+			 model.addAttribute("students", students);
+			 System.out.println(CurrentUpdate);
+			 int id = Integer.parseInt(CurrentUpdate);
+		     studentService.updateStudent(id);
 			 
 		 	return "redirect:/CareerOffice/list";
 		 
 		 }
+		 
+		 @RequestMapping(value = "/updatePositionAccess", method = RequestMethod.GET)
+			public String updatePositionAccess(Model model, @RequestParam String CurrentUpdate, @RequestParam String Department  ) {
+			 List<Positions> positions = officeService.getAllPositions();
+			 model.addAttribute("positions",positions);
+			 System.out.println(CurrentUpdate);
+			 int id = Integer.parseInt(CurrentUpdate);
+			 officeService.updatePositions(id, Department);
+				System.out.println(Department);
+				return "redirect:/CareerOffice/Manage_Positions";
+			}
 
 }

@@ -20,7 +20,6 @@
 	<div id="container">
 		<div id="content">
 			<!--  add our html table here -->
-			<form:form action="updateStudentAccess" modelAttribute="student" method="POST">
 			<table>
 				<tr>
 					<th>ID</th>
@@ -33,24 +32,23 @@
 				</tr>
 				<!-- loop over and print our students -->
 				<c:forEach var="tempStudents" items="${students}">
-					<tr>
-						<td>${tempStudents.id}</td>
-						<td>${tempStudents.name}</td>
-						<td>${tempStudents.surname}</td>
-						<td>${tempStudents.lessons}</td>
-						<td>${tempStudents.year}</td>
-						<td>${tempStudents.average}</td>
-						<td><input type="checkbox" checked="checked" value="${tempStudent.id}"/></td>
-					</tr>
+					<form action="updateStudentAccess" method="GET">
+						<tr>
+							<td>${tempStudents.id}</td>
+							<td>${tempStudents.name}</td>
+							<td>${tempStudents.surname}</td>
+							<td>${tempStudents.lessons}</td>
+							<td>${tempStudents.year}</td>
+							<td>${tempStudents.average}</td>
+							<td><input type="hidden" value="${tempStudents.id}" name="CurrentUpdate">
+							<input type="submit" value="Grand Access"></td>
+						</tr>
+					
+					</form>
 				</c:forEach>
 			
 			</table>
-			<br>
-			<input type="submit" value="Grand Access"
-				onclick="updateStudentAccess" class="add-button">
-			
-			</form:form>
-			
+				
 		</div>
 
 	</div>

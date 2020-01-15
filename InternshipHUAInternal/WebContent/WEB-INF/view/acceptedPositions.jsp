@@ -31,8 +31,8 @@
                                         <tr>
                                         		<td>${tempPositions.id}</td>
                                         		<td>${tempPositions.name}</td>
-                                                <td>${tempPositions.subject}</td>
-                                                <td><input type="checkbox"> </td>
+                                                <td>${tempPositions.category}</td>
+                                                <td>${tempPositions.department}</td>
                                         </tr>
                                 </c:forEach>
                         </table>
