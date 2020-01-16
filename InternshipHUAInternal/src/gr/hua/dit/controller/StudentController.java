@@ -14,21 +14,21 @@ import gr.hua.dit.service.OfficeService;
 @Controller
 @RequestMapping("/Student/")
 public class StudentController {
-	
-	//injecting office service instead of officedao
-		@Autowired
-		private OfficeService officeService;
-	
+
+	// injecting office service instead of officedao
+	@Autowired
+	private OfficeService officeService;
+
 	@RequestMapping(value = "/Internship_Request", method = RequestMethod.GET)
 	public String newRequestForInternship(Model model) {
 		List<Positions> positions = officeService.getAcceptedPositions();
-        // add the customers to the model
-        model.addAttribute("positions",positions);
+		// add the customers to the model
+		model.addAttribute("positions", positions);
 		return "internshipRequest";
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	   public String showStudentHomeMenu() {
-	      return "studentMenu";
-	   }
+	public String showStudentHomeMenu() {
+		return "studentMenu";
+	}
 }
