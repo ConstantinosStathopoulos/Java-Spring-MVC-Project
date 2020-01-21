@@ -37,7 +37,7 @@ public class Positions {
 	private List<Student> students;
 
 	public List<Student> getStudents() {
-		return students;
+		return this.students;
 	}
 
 	public void setStudents(List<Student> students) {

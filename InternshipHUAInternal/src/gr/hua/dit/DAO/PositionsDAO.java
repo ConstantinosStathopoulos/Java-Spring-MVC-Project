@@ -8,6 +8,6 @@ public interface PositionsDAO {
 	public List<Positions> getAllPositions();
 	public List<Positions> getAcceptedPositions();
 	public void updatePositions(int id, String department);
-	public List<Positions> getDepartmentPositions(String department);
+	public List<Positions> getDepartmentPositions(String department, int student_id);
 	public void savePosition(int student_id, int position_id);
 }

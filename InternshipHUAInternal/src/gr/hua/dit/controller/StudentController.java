@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import gr.hua.dit.entity.Positions;
-
 import gr.hua.dit.service.StudentService;
 
 @Controller
@@ -28,7 +27,7 @@ public class StudentController {
 		int id = Integer.parseInt(name);
 		String department = studentService.getDepartment(id);
 		System.out.println(department);
-		List<Positions> positions = studentService.getDepartmentPositions(department);
+		List<Positions> positions = studentService.getDepartmentPositions(department,id);
 		// add the customers to the model
 		model.addAttribute("positions", positions);
 		return "internshipRequest";
@@ -40,7 +39,7 @@ public class StudentController {
 		System.out.println(name);
 		int id = Integer.parseInt(name);
 		boolean allowed = studentService.isAllowed(id);
-
+		
 		if (allowed == true) {
 			return "studentMenu";
 		} else {
@@ -59,12 +58,12 @@ public class StudentController {
 		int student_id = Integer.parseInt(name);
 		String department = studentService.getDepartment(student_id);
 
-		List<Positions> positions = studentService.getDepartmentPositions(department);
+		List<Positions> positions = studentService.getDepartmentPositions(department,student_id);
 		// add the customers to the model
 		model.addAttribute("positions", positions);
 		studentService.savePosition(student_id, position_id);
 		
-		return "internshipRequest";
+		return "redirect:/Student/Internship_Request";
 
 	}
 }

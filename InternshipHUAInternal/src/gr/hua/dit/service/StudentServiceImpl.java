@@ -45,8 +45,8 @@ public class StudentServiceImpl implements StudentService {
 	private PositionsDAO positionsDAO;
 	@Override
 	@Transactional
-	public List<Positions> getDepartmentPositions(String department) {
-		return positionsDAO.getDepartmentPositions(department);
+	public List<Positions> getDepartmentPositions(String department, int student_id) {
+		return positionsDAO.getDepartmentPositions(department, student_id);
 	}
 	@Override
 	@Transactional
