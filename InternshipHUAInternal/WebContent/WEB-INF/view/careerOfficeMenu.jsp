@@ -7,6 +7,7 @@
    </head>
 
    <body>
+   		
       <h2>For student managment</h2>
       <form:form method = "GET" action = "list">
          <table>
@@ -35,6 +36,8 @@
             </tr>
          </table>  
       </form:form>
+      
+    
    </body>
 </html>
 

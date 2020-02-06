@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import gr.hua.dit.entity.Positions;
 import gr.hua.dit.entity.Student;
 
@@ -106,6 +105,41 @@ public class PositionsDAOImpl implements PositionsDAO {
 		System.out.println(positions);
 		position.addStudent(student);
 	}
+	
+	@Override
+	public void saveCompanyPosition(String name, String category) {
+		// get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		Positions position = new Positions();
+		//int id =position.getId();
+		 //position = currentSession.get(Positions.class,id);
+		position.setCategory(category);
+		position.setName(name);
+
+		
+			currentSession.save(position);
+		}
+	
+	public List<Positions> seePositions( String compName){
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Positions> query = currentSession.createQuery("from Positions where allowed=true and name= :compName", Positions.class);
+		query.setParameter("compName", compName);
+		List<Positions> positions = query.getResultList();
+		return positions;
+		
+	}
+
+	@Override
+	public List<Student> StudentsForPosition(String compName, int posID) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Positions position = currentSession.get(Positions.class, posID);
+		List<Student> students = position.getStudents();
+		return students;
+	}
+
+	}
+
+
 
 	/*
 	 * private String getUsername(String userId) { Object principal =
@@ -118,4 +152,4 @@ public class PositionsDAOImpl implements PositionsDAO {
 	 * }
 	 */
 
-}
+

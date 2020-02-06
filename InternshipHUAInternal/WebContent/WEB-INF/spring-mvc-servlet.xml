@@ -28,6 +28,7 @@
                 class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                 <property name="prefix" value="/WEB-INF/view/" />
                 <property name="suffix" value=".jsp" />
+                
         </bean>
 		
 		<!-- Step 1: Define Database DataSource / connection pool -->

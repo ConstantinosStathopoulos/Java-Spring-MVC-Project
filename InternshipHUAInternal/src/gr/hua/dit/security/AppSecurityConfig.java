@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,7 +28,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	DataSource dataSource;
 	
 	
-	@Override
+	//@Overide
+	@Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     
 		 auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
@@ -37,40 +39,79 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
            
     }
 	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers("/CareerOffice/*").hasRole("OFFICE")
-		.antMatchers("/Student/*").hasRole("STUDENT")
-		.and()
-		.formLogin()
-		.loginPage("/login")
-		.loginProcessingUrl("/login")
-		.successHandler(myAuthenticationSuccessHandler())
-		.loginProcessingUrl("/authUser").permitAll().and().logout().permitAll();
-
-	}
-//	import org.apache.commons.logging.Log;
-	
-	@Bean
-    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-        return new UrlAuthenticationSuccessHandler();
-    }
-	
-
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**");
-
-		web.ignoring().antMatchers("/api/**");
-	}
-	
-	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder;
 	}
+	
+	@Configuration
+    @Order(1)
+    public static class ApiWebSecurityConfig extends WebSecurityConfigurerAdapter{
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+                  http.csrf().disable()
+              .antMatcher("/api/**")
+              .authorizeRequests()
+                  .anyRequest().authenticated()
+                  .and()
+              .httpBasic();
+        }
+    }
+	
+	
+	
+	/*
+	 * @Override protected void configure(HttpSecurity http) throws Exception {
+	 * http.authorizeRequests() .antMatchers("/CareerOffice/*").hasRole("OFFICE")
+	 * .antMatchers("/Student/*").hasRole("STUDENT") .and() .formLogin()
+	 * .loginPage("/login") .loginProcessingUrl("/login")
+	 * .successHandler(myAuthenticationSuccessHandler())
+	 * .loginProcessingUrl("/authUser").permitAll().and().logout().permitAll();
+	 * 
+	 * }
+	 */
+	 
+//	import org.apache.commons.logging.Log;
+	
+	@Bean
+    public static AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new UrlAuthenticationSuccessHandler();
+    }
+	
+
+	
+	@Configuration
+    @Order(2)
+    public static class FormWebSecurityConfig extends WebSecurityConfigurerAdapter{
+
+        @Override
+        public void configure(WebSecurity web) throws Exception {
+                    web.ignoring().antMatchers("/resources/**");
+        }
+
+        @Override protected void configure(HttpSecurity http) throws Exception {
+      	  http.authorizeRequests() .antMatchers("/CareerOffice/*").hasRole("OFFICE")
+      	  .antMatchers("/Student/*").hasRole("STUDENT") .and() .formLogin()
+      	  .loginPage("/login") .loginProcessingUrl("/login")
+      	  .successHandler(myAuthenticationSuccessHandler())
+      	  .loginProcessingUrl("/authUser").permitAll().and().logout().permitAll();
+      	  
+      	  }
+    }
+	
+	
+	
+	
+	/*
+	 * @Override public void configure(WebSecurity web) throws Exception {
+	 * web.ignoring().antMatchers("/resources/**");
+	 * 
+	 * web.ignoring().antMatchers("/api/**"); }
+	 */
+	
+	
+	
 	
 	
 	

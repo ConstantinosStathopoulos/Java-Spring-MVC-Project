@@ -18,4 +18,5 @@ public interface StudentService {
 	public List<Positions> getDepartmentPositions(String department, int student_id);
 
 	public void savePosition(int student_id, int position_id );
+	
 }

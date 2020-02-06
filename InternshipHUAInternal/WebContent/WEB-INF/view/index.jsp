@@ -7,9 +7,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Σύστημα Πρακτικής Άσκησης</title>
+
 </head>
 <body>
-	<h1>Καλώς ήρθατε στο Σύστημα Πρακτικής Άσκησης</h1>
+	<img src="resources/images/logo.png" >
+	<h1>Εσωτερικό Σύστημα Πρακτικής Άσκησης</h1>
 	
 	<h2>Login</h2>
       <form:form method = "GET" action = "login">

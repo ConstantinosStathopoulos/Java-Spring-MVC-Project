@@ -8,6 +8,7 @@
 <!-- reference our style sheet -->
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/listview.css" />
+<%@ include file="include/header.jspf" %>
 </head>
 <body>
 
@@ -21,6 +22,7 @@
 		<div id="content">
 			<!--  add our html table here -->
 			<table>
+			<thead>
 				<tr>
 					<th>ID</th>
 					<th>First Name</th>
@@ -30,6 +32,8 @@
 					<th>Average</th>
 					<th>Allow</th>
 				</tr>
+				</thead>
+				<tbody>
 				<!-- loop over and print our students -->
 				<c:forEach var="tempStudents" items="${students}">
 					<form action="updateStudentAccess" method="GET">
@@ -46,7 +50,7 @@
 					
 					</form>
 				</c:forEach>
-			
+			</tbody>
 			</table>
 				
 		</div>
@@ -60,5 +64,6 @@
 			</tr>
 		</table>
 	</form:form>
+	 <%@ include file="include/footer.jspf" %>
 </body>
 </html>
