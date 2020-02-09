@@ -4,19 +4,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+body {
+  background-color:#e6f2ff;
+  }
+</style>
+
 <title>List Students</title>
 <!-- reference our style sheet -->
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/listview.css" />
-<%-- <%@ include file="include/header.jspf" %> --%>
+
 </head>
 <body>
-
+ 	<center> 
+                <div class="w3-panel w3-blue-gray">
 	<div id="wrapper">
 		<div id="header">
 			<h2>Student Managment System</h2>
 		</div>
 	</div>
+</div>
+<!-- <div class="w3-panel w3-blue-gray"> -->
 
 	<div id="container">
 		<div id="content">
@@ -56,7 +68,7 @@
 		</div>
 
 	</div>
-	<h2>Button to return to home (for Career Office user home)</h2>
+	
 	<form:form method="GET" action="redirectHome">
 		<table>
 			<tr>
@@ -64,6 +76,7 @@
 			</tr>
 		</table>
 	</form:form>
-<%-- 	 <%@ include file="include/footer.jspf" %> --%>
+<%--      <%@ include file="include/footer.jspf" %> --%>
+	
 </body>
 </html>

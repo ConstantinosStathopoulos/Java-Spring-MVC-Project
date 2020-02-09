@@ -21,11 +21,6 @@ public class HuaAppConfig implements WebMvcConfigurer{
                             .allowCredentials(true).maxAge(MAX_AGE_SECS);
     }
     
-//    .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method",
-//            "Access-Control-Request-Headers")
-//    .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
-//    .allowCredentials(true).
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
             registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");

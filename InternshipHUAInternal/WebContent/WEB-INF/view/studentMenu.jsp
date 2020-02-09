@@ -5,20 +5,17 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
    <head>
+   <style>
+body {
+  background-color:#e6f2ff;
+  }
+</style>
       <title>Student Menu</title>
    </head>
 
    <body>
-   		<sec:authorize access="isAuthenticated()">
-        <div class="ui segment">
-        <h2>Welcome! You are logged in as <sec:authentication property="principal.username" /> </h2>
-        <h2>enabled user:<sec:authentication property="principal.enabled" /></h2>
-        </div>
-</sec:authorize>
-   		
-      	
-      	
-      
+   <center>
+    <div class="w3-panel w3-blue-gray">
       <form:form method = "GET" action = "Internship_Request">
          <table>
             <tr>
@@ -28,5 +25,7 @@
             </tr>
          </table>  
       </form:form>
+      </div>
    </body>
+
 </html>

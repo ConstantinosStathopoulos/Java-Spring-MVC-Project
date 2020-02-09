@@ -12,6 +12,7 @@
 <meta name="_csrf" content="${_csrf.token}"/>
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>${pageTitle}</title>
+
 <!-- reference our style sheet -->
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
@@ -26,14 +27,27 @@
 
 </head>
 <body>
+<!-- <img src="resources/images/logo.png"/> -->
+  
 	<header class="navbar">
+	 <img src='<c:url value="https://www.hua.gr/files/logo.png">Logo</c:url>' /> 
 	<div class="navbar-primar">
-		<sec:authorize access="isAuthenticated()">
-			<a href="${pageContext.request.contextPath}/customer/list" class="btn btn-link">List Customers</a>
-			<a href="<c:url value="/customer/addCustomer"></c:url>" class="btn btn-link">Add a Customer</a>		
+<%-- 		<sec:authorize access="isAuthenticated()"> --%>
+			<sec:authorize access="hasAnyRole('ROLE_OFFICE')">
+			<a href="/InternshipHUAInternal/CareerOffice/list" class="btn btn-link">Manage Students</a>
+			<a href="<c:url value="/CareerOffice/Manage_Positions"></c:url>" class="btn btn-link">Manage Positions</a>
+			<a href="<c:url value="/CareerOffice/"></c:url>" class="btn btn-link">Menu</a>		
 			<a class="btn btn-link" name="logout-nav"> Logout</a>
-		</sec:authorize>
+			</sec:authorize>
+			
+			<sec:authorize access="hasAnyRole('ROLE_STUDENT')">
+			<a href="${pageContext.request.contextPath}/customer/list" class="btn btn-link">My applications</a>
+			<a href="<c:url value="/Student/Internship_Request"></c:url>" class="btn btn-link">Apply for Intern</a>		
+			<a class="btn btn-link" name="logout-nav"> Logout</a>
+			</sec:authorize>
+		
 	</div>
 	</header>
 
 	<div class="container">
+	</div>

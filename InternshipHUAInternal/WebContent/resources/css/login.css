@@ -1,6 +1,6 @@
 /* Bordered form */
 form {
-  border: 3px solid #f1f1f1;
+  border: 1px solid #f1f1f1;
   margin: 20px;
 }
 
@@ -11,7 +11,7 @@ input[type=text], input[type=password] {
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
-  box-sizing: border-box;
+  box-sizing: border box;
 }
 
 /* Set a style for all buttons */
@@ -29,4 +29,7 @@ button {
 button:hover {
   opacity: 0.8;
 }
+
+
+
 

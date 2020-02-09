@@ -49,51 +49,33 @@ public class PositionsDAOImpl implements PositionsDAO {
 	public List<Positions> getDepartmentPositions(String department, int student_id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Student student = currentSession.get(Student.class, student_id);
-		
+
 		List<Positions> positions = student.getPositions();
 		List<Integer> posID = new ArrayList<Integer>();
-		
+
 		for (Positions pos : positions) {
 			posID.add(pos.getId());
 		}
 		System.out.println(posID);
 
-		// System.out.println(positions);
-		// System.out.println(students);
-
-		// and p.id not in (select position_id from applications.data where
-		// student_id=:username )
-		// and p.id not in :positions
 		String queryNull = "from Positions p where p.department=:department and p.allowed=true";
 		String queryNotnull = "from Positions p where p.department=:department and p.allowed=true and p.id not in :positions";
-		/*
-		 * Query<Positions> query = currentSession.createQuery(
-		 * "from Positions p where p.department=:department and p.allowed=true and p.id not in :positions"
-		 * , Positions.class);
-		 */
+
 		if (posID.isEmpty()) {
-			Query<Positions> query = currentSession.createQuery(
-					 queryNull
-					  , Positions.class);
+			Query<Positions> query = currentSession.createQuery(queryNull, Positions.class);
 			query.setParameter("department", department);
 			List<Positions> dept_Positions = query.getResultList();
 			return dept_Positions;
-			
-			}else {
-				Query<Positions> query = currentSession.createQuery(
-						 queryNotnull
-						  , Positions.class);
-				query.setParameter("department", department);
-				query.setParameterList("positions", posID);
-				List<Positions> dept_Positions = query.getResultList();
-				return dept_Positions;
-			
-			}
-//		query.setParameter("department", department);
-//		query.setParameterList("positions", posID);
-//		List<Positions> dept_Positions = query.getResultList();
 
-		
+		} else {
+			Query<Positions> query = currentSession.createQuery(queryNotnull, Positions.class);
+			query.setParameter("department", department);
+			query.setParameterList("positions", posID);
+			List<Positions> dept_Positions = query.getResultList();
+			return dept_Positions;
+
+		}
+
 	}
 
 	@Override
@@ -105,29 +87,27 @@ public class PositionsDAOImpl implements PositionsDAO {
 		System.out.println(positions);
 		position.addStudent(student);
 	}
-	
+
 	@Override
 	public void saveCompanyPosition(String name, String category) {
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		Positions position = new Positions();
-		//int id =position.getId();
-		 //position = currentSession.get(Positions.class,id);
 		position.setCategory(category);
 		position.setName(name);
 
-		
-			currentSession.save(position);
-		}
-	
-	public List<Positions> seePositions( String compName){
+		currentSession.save(position);
+	}
+
+	public List<Positions> seePositions(String compName) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Positions> query = currentSession.createQuery("from Positions where allowed=true and name= :compName", Positions.class);
+		Query<Positions> query = currentSession.createQuery("from Positions where allowed=true and name= :compName",
+				Positions.class);
 		query.setParameter("compName", compName);
-		//List<Positions> positions = query.getResultList();
+		// List<Positions> positions = query.getResultList();
 		List<Positions> positions = query.getResultList();
 		return positions;
-		
+
 	}
 
 	@Override
@@ -139,19 +119,4 @@ public class PositionsDAOImpl implements PositionsDAO {
 		return students;
 	}
 
-	}
-
-
-
-	/*
-	 * private String getUsername(String userId) { Object principal =
-	 * SecurityContextHolder.getContext().getAuthentication().getPrincipal(); if
-	 * (principal instanceof UserDetails) { String username =
-	 * ((UserDetails)principal).getUsername(); } else { String username =
-	 * principal.toString(); } return userId;
-	 * 
-	 * 
-	 * }
-	 */
-
-
+}

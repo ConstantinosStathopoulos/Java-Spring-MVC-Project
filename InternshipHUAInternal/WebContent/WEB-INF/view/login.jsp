@@ -9,20 +9,23 @@
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/login.css" />
 <style>
-body {background-image: url(resources/images/background2.jpg);} 
+body {
+background-color: #e6f2ff;
+}
 </style>
 
 <title>Login Page</title>
 <link rel="stylesheet" href="WebContent/resources/css/login.css">
 </head>
 <body>
-<%--  <center> --%>
-		<div class="w3-panel w3-black">
-			<img src="resources/images/logo.png" alt="Χαροκόπειο Πανεπιστήμιο">
+  <center> 
+		<div class="w3-panel w3-blue-grey">
+<!-- 			<img src="resources/images/logo.png" alt="Χαροκόπειο Πανεπιστήμιο"> -->
 			<h1 id="banner">Fill the form to Login to our system</h1>
 		</div>
 		<form:form action="${pageContext.request.contextPath}/authUser"
 			method="POST">
+			
 
 			<!-- <div class="w3-panel w3-blue-gray"> -->
 
@@ -46,6 +49,6 @@ body {background-image: url(resources/images/background2.jpg);}
 				</c:if>
 			</p>
 		</form:form>
-<%-- 	</center> --%>
+	
 </body>
 </html>

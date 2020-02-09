@@ -1,6 +1,5 @@
 package gr.hua.dit.security;
 
-
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,97 +15,68 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-
-
-
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	
 	@Autowired
 	DataSource dataSource;
-	
-	
-	//@Overide
+
+	// @Overide
 	@Autowired
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    
-		 auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
-		.usersByUsernameQuery("select username,password, enabled from users.data where username=?")
-		.authoritiesByUsernameQuery("select username, authority from users.authorities where username=?");
-            
-           
-    }
-	
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
+				.usersByUsernameQuery("select username,password, enabled from users.data where username=?")
+				.authoritiesByUsernameQuery("select username, authority from users.authorities where username=?");
+
+	}
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder;
 	}
-	
+
 	@Configuration
-    @Order(1)
-    public static class ApiWebSecurityConfig extends WebSecurityConfigurerAdapter{
-		
+	@Order(1)
+	public static class ApiWebSecurityConfig extends WebSecurityConfigurerAdapter {
+
 		public void configure(WebSecurity web) throws Exception {
-             web.ignoring().antMatchers("/api/**");
+			web.ignoring().antMatchers("/api/**");
 		}
-		
+
 		@Override
-        protected void configure(HttpSecurity http) throws Exception {
-        	http.csrf().disable()
-          .antMatcher("/api/**")
-          .authorizeRequests()
-              .anyRequest().authenticated()
-              .and()
-          .httpBasic();
-        }
-                  
-    }
-	
-	//etsi itan prin
-//	 protected void configure(HttpSecurity http) throws Exception {
-//         http.csrf().disable()
-//     .antMatcher("/api/**")
-//     .authorizeRequests()
-//         .anyRequest().authenticated()
-//         .and()
-//     .httpBasic();
-//}
-	
-	
+		protected void configure(HttpSecurity http) throws Exception {
+			http.csrf().disable().antMatcher("/api/**").authorizeRequests().anyRequest().authenticated().and()
+					.httpBasic();
+		}
+
+	}
+
 	@Bean
-    public static AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-        return new UrlAuthenticationSuccessHandler();
-    }
-	
+	public static AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+		return new UrlAuthenticationSuccessHandler();
+	}
 
-	
 	@Configuration
-    @Order(2)
-    public static class FormWebSecurityConfig extends WebSecurityConfigurerAdapter{
+	@Order(2)
+	public static class FormWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-        @Override
-        public void configure(WebSecurity web) throws Exception {
-                    web.ignoring().antMatchers("/resources/**");
-        }
+		@Override
+		public void configure(WebSecurity web) throws Exception {
+			web.ignoring().antMatchers("/resources/**");
+		}
 
-        @Override protected void configure(HttpSecurity http) throws Exception {
-      	  http.authorizeRequests() .antMatchers("/CareerOffice/*").hasRole("OFFICE")
-      	  .antMatchers("/Student/*").hasRole("STUDENT") .and() .formLogin()
-      	  .loginPage("/login") .loginProcessingUrl("/login")
-      	  .successHandler(myAuthenticationSuccessHandler())
-      	  .loginProcessingUrl("/authUser").permitAll().and().logout().permitAll();
-      	  
-      	  }
-    }
-	
-	
-	
-	
-	
-	
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			http.authorizeRequests().antMatchers("/CareerOffice/*").hasRole("OFFICE").antMatchers("/Student/*")
+					.hasRole("STUDENT").and().formLogin().loginPage("/login").loginProcessingUrl("/login")
+					.successHandler(myAuthenticationSuccessHandler()).loginProcessingUrl("/authUser").permitAll().and()
+					.logout().permitAll();
+
+		}
+	}
+
 }

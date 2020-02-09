@@ -3,12 +3,28 @@
 <%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <html>
    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link type="text/css" rel="stylesheet">
+<style>
+body {
+  background-color:#e6f2ff;
+  
+}
+</style>
+
       <title>OfficeMenu</title>
    </head>
+   
 
    <body>
-   		
-      <h2>For student managment</h2>
+ <center>
+
+   		<div class="w3-panel w3-blue-gray">
+	<img alt="" src="resources/images/logo.png">
+      <h2>Student managment </h2>
+   </div>
+   <div class="w3-panel w3-dark-blue">
       <form:form method = "GET" action = "list">
          <table>
             <tr>
@@ -36,8 +52,7 @@
             </tr>
          </table>  
       </form:form>
-      
-    
+      </div>
+<!--     </center> -->
    </body>
 </html>
-
