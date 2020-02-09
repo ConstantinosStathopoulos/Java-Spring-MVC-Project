@@ -124,6 +124,7 @@ public class PositionsDAOImpl implements PositionsDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Positions> query = currentSession.createQuery("from Positions where allowed=true and name= :compName", Positions.class);
 		query.setParameter("compName", compName);
+		//List<Positions> positions = query.getResultList();
 		List<Positions> positions = query.getResultList();
 		return positions;
 		
@@ -134,6 +135,7 @@ public class PositionsDAOImpl implements PositionsDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Positions position = currentSession.get(Positions.class, posID);
 		List<Student> students = position.getStudents();
+		System.out.println(students);
 		return students;
 	}
 

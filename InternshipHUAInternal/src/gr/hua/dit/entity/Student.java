@@ -13,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({ "positions" })
 @Table(name = "students.data")
 public class Student {
 	// for postgres we use sequence type in generatedvalue

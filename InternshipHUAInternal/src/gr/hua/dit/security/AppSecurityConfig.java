@@ -18,6 +18,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 
 
+
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -48,31 +50,33 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Configuration
     @Order(1)
     public static class ApiWebSecurityConfig extends WebSecurityConfigurerAdapter{
-        @Override
+		
+		public void configure(WebSecurity web) throws Exception {
+             web.ignoring().antMatchers("/api/**");
+		}
+		
+		@Override
         protected void configure(HttpSecurity http) throws Exception {
-                  http.csrf().disable()
-              .antMatcher("/api/**")
-              .authorizeRequests()
-                  .anyRequest().authenticated()
-                  .and()
-              .httpBasic();
+        	http.csrf().disable()
+          .antMatcher("/api/**")
+          .authorizeRequests()
+              .anyRequest().authenticated()
+              .and()
+          .httpBasic();
         }
+                  
     }
 	
+	//etsi itan prin
+//	 protected void configure(HttpSecurity http) throws Exception {
+//         http.csrf().disable()
+//     .antMatcher("/api/**")
+//     .authorizeRequests()
+//         .anyRequest().authenticated()
+//         .and()
+//     .httpBasic();
+//}
 	
-	
-	/*
-	 * @Override protected void configure(HttpSecurity http) throws Exception {
-	 * http.authorizeRequests() .antMatchers("/CareerOffice/*").hasRole("OFFICE")
-	 * .antMatchers("/Student/*").hasRole("STUDENT") .and() .formLogin()
-	 * .loginPage("/login") .loginProcessingUrl("/login")
-	 * .successHandler(myAuthenticationSuccessHandler())
-	 * .loginProcessingUrl("/authUser").permitAll().and().logout().permitAll();
-	 * 
-	 * }
-	 */
-	 
-//	import org.apache.commons.logging.Log;
 	
 	@Bean
     public static AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
@@ -99,17 +103,6 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
       	  
       	  }
     }
-	
-	
-	
-	
-	/*
-	 * @Override public void configure(WebSecurity web) throws Exception {
-	 * web.ignoring().antMatchers("/resources/**");
-	 * 
-	 * web.ignoring().antMatchers("/api/**"); }
-	 */
-	
 	
 	
 	

@@ -27,7 +27,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	@Transactional
-	public List<Positions> copmanyPositions(String compName) {
+	public List<Positions> companyPositions(String compName) {
 		return positionsDAO.seePositions(compName);
 	}
 

@@ -1,6 +1,7 @@
 /* Bordered form */
 form {
   border: 3px solid #f1f1f1;
+  margin: 20px;
 }
 
 /* Full-width inputs */
@@ -23,8 +24,9 @@ button {
   cursor: pointer;
   width: 100%;
 }
-
+/*#4CAF50*/
 /* Add a hover effect for buttons */
 button:hover {
   opacity: 0.8;
 }
+

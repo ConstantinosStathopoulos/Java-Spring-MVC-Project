@@ -8,7 +8,7 @@
 <!-- reference our style sheet -->
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/listview.css" />
-<%@ include file="include/header.jspf" %>
+<%-- <%@ include file="include/header.jspf" %> --%>
 </head>
 <body>
 
@@ -64,6 +64,6 @@
 			</tr>
 		</table>
 	</form:form>
-	 <%@ include file="include/footer.jspf" %>
+<%-- 	 <%@ include file="include/footer.jspf" %> --%>
 </body>
 </html>

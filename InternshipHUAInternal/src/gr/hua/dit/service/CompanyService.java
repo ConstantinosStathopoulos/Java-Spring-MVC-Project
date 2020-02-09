@@ -8,7 +8,7 @@ import gr.hua.dit.entity.Student;
 public interface CompanyService {
 	void saveCompanyPosition(String name, String category);
 
-	List<Positions> copmanyPositions(String compName);
+	List<Positions> companyPositions(String compName);
 
 	List<Student> StudentsForPosition(String compName, int posID);
 

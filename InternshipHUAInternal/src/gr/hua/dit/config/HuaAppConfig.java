@@ -15,8 +15,16 @@ public class HuaAppConfig implements WebMvcConfigurer{
     @Override
     public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**").allowedOrigins("*")
-                            .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE").maxAge(MAX_AGE_SECS);
+                            .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE").allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method",
+                                    "Access-Control-Request-Headers")
+                            .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
+                            .allowCredentials(true).maxAge(MAX_AGE_SECS);
     }
+    
+//    .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method",
+//            "Access-Control-Request-Headers")
+//    .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
+//    .allowCredentials(true).
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
