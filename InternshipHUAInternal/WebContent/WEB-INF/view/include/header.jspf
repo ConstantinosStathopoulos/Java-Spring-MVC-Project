@@ -41,7 +41,7 @@
 			</sec:authorize>
 			
 			<sec:authorize access="hasAnyRole('ROLE_STUDENT')">
-			<a href="${pageContext.request.contextPath}/customer/list" class="btn btn-link">My applications</a>
+			<a href="${pageContext.request.contextPath}/Student/myApplication" class="btn btn-link">My applications</a>
 			<a href="<c:url value="/Student/Internship_Request"></c:url>" class="btn btn-link">Apply for Intern</a>		
 			<a class="btn btn-link" name="logout-nav"> Logout</a>
 			</sec:authorize>

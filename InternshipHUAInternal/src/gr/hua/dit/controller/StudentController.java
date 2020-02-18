@@ -66,4 +66,20 @@ public class StudentController {
 		return "redirect:/Student/Internship_Request";
 
 	}
+	
+	@RequestMapping(value = "/myApplication", method = RequestMethod.GET)
+	public String viewApplication(Model model,  Principal principal) {
+		
+
+		String name = principal.getName();
+		System.out.println(name);
+		int student_id = Integer.parseInt(name);
+
+		List<Positions> positions = studentService.getStudentApplications(student_id);
+		// add the customers to the model
+		model.addAttribute("positions", positions);
+		
+		return "studentApplications";
+
+	}
 }

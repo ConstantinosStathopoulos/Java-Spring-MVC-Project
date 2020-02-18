@@ -36,6 +36,12 @@ public class Positions {
 
 	@Column(name = "department")
 	private String department;
+	
+	@Column(name = "available")
+	private boolean available;
+	
+	@Column(name = "student")
+	private String chosen_student;
 	//eager
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
 			CascadeType.REFRESH })
@@ -54,14 +60,18 @@ public class Positions {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	public Positions(String name, String category, boolean allowed, String department) {
 		super();
-
+		
 		this.name = name;
 		this.category = category;
 		this.allowed = allowed;
 		this.department = department;
+		
+		
 	}
 
 	public int getId() {
@@ -111,10 +121,32 @@ public class Positions {
 		
 		students.add(student);
 	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	public String getChosen_student() {
+		return chosen_student;
+	}
+
+	public void setChosen_student(String chosen_student) {
+		this.chosen_student = chosen_student;
+	}
+
 	@Override
 	public String toString() {
-		return "Position [id=" + id + ", companyName =" + name + ", positionCategory=" + category + ", department ="
-				+ department + ", allowed=" + allowed + "]";
+		return "Positions [id=" + id + ", name=" + name + ", category=" + category + ", allowed=" + allowed
+				+ ", department=" + department + ", available=" + available + ", chosen_student=" + chosen_student
+				+ "]";
 	}
+
+	
+	
+	
 
 }

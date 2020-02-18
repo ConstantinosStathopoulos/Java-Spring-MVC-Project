@@ -46,6 +46,10 @@ public class Student {
 	@Column(name = "allowed")
 	private boolean allowed;
 
+	@Column(name = "chosen")
+	private boolean  chosen;
+	
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
 			CascadeType.REFRESH }, mappedBy = "students")
 //	@JoinTable(name = "applications.data", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "position_id"))
@@ -64,23 +68,27 @@ public class Student {
 	}
 
 //constractor
-	public Student(String name, String surname, int lessons, int year, String department, double average,
-			boolean allowed) {
-		super();
 
-		this.name = name;
-		this.surname = surname;
-		this.lessons = lessons;
-		this.year = year;
-		this.department = department;
-		this.average = average;
-		this.allowed = allowed;
-	}
 
 //Getters-Setters
 	public int getId() {
 		return id;
 	}
+
+	public Student(int id, String name, String surname, int lessons, int year, String department, double average,
+		boolean allowed, boolean chosen, List<Positions> positions) {
+	super();
+	this.id = id;
+	this.name = name;
+	this.surname = surname;
+	this.lessons = lessons;
+	this.year = year;
+	this.department = department;
+	this.average = average;
+	this.allowed = allowed;
+	this.chosen = chosen;
+	this.positions = positions;
+}
 
 	public void setId(int id) {
 		this.id = id;
@@ -142,11 +150,24 @@ public class Student {
 		this.allowed = allowed;
 	}
 
+	public boolean isChosen() {
+		return chosen;
+	}
+
+	public void setChosen(boolean chosen) {
+		this.chosen = chosen;
+	}
+
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", firstName=" + name + ", lastName=" + surname + ", lessons=" + lessons
-				+ ", year=" + year + ", department=" + department + ", average=" + average + ", allowed=" + allowed
-				+ "]";
-
+		return "Student [id=" + id + ", name=" + name + ", surname=" + surname + ", lessons=" + lessons + ", year="
+				+ year + ", department=" + department + ", average=" + average + ", allowed=" + allowed + ", chosen="
+				+ chosen + "]";
 	}
+
+	
+	
+
+	
+	
 }

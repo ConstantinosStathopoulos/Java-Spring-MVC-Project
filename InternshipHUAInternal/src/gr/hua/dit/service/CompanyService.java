@@ -12,4 +12,6 @@ public interface CompanyService {
 
 	List<Student> StudentsForPosition(String compName, int posID);
 
+	boolean saveStudentsForPosition(int posID, String studentID);
+
 }

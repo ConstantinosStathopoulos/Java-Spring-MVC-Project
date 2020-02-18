@@ -35,9 +35,9 @@
         <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
          destroy-method="close">
        <property name="driverClass" value="org.postgresql.Driver" />
-       <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/huadb?useSSL=false" />
+       <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/test" />
        <property name="user" value="postgres" />
-       <property name="password" value="admin" /> 
+       <property name="password" value="evaniavi" /> 
 
        <!-- these are connection pool properties for C3P0 -->
        <property name="initialPoolSize" value="5"/>

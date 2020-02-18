@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import gr.hua.dit.entity.Positions;
 import gr.hua.dit.entity.Student;
 
 @Repository
@@ -60,6 +61,14 @@ public class StudentDAOImpl implements StudentDAO {
 		Student student = currentSession.get(Student.class, id);
 		String department = student.getDepartment();
 		return department;
+	}
+
+	@Override
+	public List<Positions> getStudentApplications(int student_id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Student student = currentSession.get(Student.class, student_id);
+		List<Positions> student_positions = student.getPositions();
+		return student_positions;
 	}
 
 }

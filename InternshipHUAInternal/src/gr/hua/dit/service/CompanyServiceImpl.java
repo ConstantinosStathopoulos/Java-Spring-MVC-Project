@@ -37,5 +37,12 @@ public class CompanyServiceImpl implements CompanyService {
 		return positionsDAO.StudentsForPosition(compName, posID);
 	}
 
+	@Override
+	@Transactional
+	public boolean saveStudentsForPosition(int posID, String studentID) {
+	
+		return positionsDAO.saveStudent(posID,studentID);
+	}
+
 		
 }

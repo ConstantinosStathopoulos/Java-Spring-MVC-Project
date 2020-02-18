@@ -55,4 +55,10 @@ public class StudentServiceImpl implements StudentService {
 		
 	}
 	
+	@Override
+	@Transactional
+	public List<Positions> getStudentApplications(int student_id) {
+		return studentDAO.getStudentApplications(student_id);
+	}
+	
 }

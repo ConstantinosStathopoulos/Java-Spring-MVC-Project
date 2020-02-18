@@ -63,5 +63,12 @@ public class CompanyRestController {
 			return students;
 		}
 		
+		@CrossOrigin
+		@RequestMapping(value = "/saveStudentForposition", method = RequestMethod.POST, produces = { "application/json", "application/xml" })
+		public boolean saveStudentForPosition(@RequestParam("posID") int posID,@RequestParam("studentID") String studentID){
+			companyService.saveStudentsForPosition(posID,studentID);
+			
+			return true;
+		}
 		
 }

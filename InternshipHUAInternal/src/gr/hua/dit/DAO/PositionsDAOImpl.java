@@ -58,8 +58,8 @@ public class PositionsDAOImpl implements PositionsDAO {
 		}
 		System.out.println(posID);
 
-		String queryNull = "from Positions p where p.department=:department and p.allowed=true";
-		String queryNotnull = "from Positions p where p.department=:department and p.allowed=true and p.id not in :positions";
+		String queryNull = "from Positions p where p.department=:department and available=true and p.allowed=true";
+		String queryNotnull = "from Positions p where p.department=:department and p.allowed=true and p.available=true and p.id not in :positions";
 
 		if (posID.isEmpty()) {
 			Query<Positions> query = currentSession.createQuery(queryNull, Positions.class);
@@ -95,13 +95,14 @@ public class PositionsDAOImpl implements PositionsDAO {
 		Positions position = new Positions();
 		position.setCategory(category);
 		position.setName(name);
+		position.setChosen_student(null);
 
 		currentSession.save(position);
 	}
 
 	public List<Positions> seePositions(String compName) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Positions> query = currentSession.createQuery("from Positions where allowed=true and name= :compName",
+		Query<Positions> query = currentSession.createQuery("from Positions where allowed=true and available=true and name= :compName",
 				Positions.class);
 		query.setParameter("compName", compName);
 		// List<Positions> positions = query.getResultList();
@@ -115,8 +116,27 @@ public class PositionsDAOImpl implements PositionsDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Positions position = currentSession.get(Positions.class, posID);
 		List<Student> students = position.getStudents();
+	List<Student> available_students = new ArrayList<Student>();
+	for(Student st : students) {
+		if(st.isChosen()==false) {
+			available_students.add(st);
+		}
+	}
 		System.out.println(students);
-		return students;
+		return available_students;
+	}
+
+	@Override
+	public boolean saveStudent(int posID, String studentID) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Positions position = currentSession.get(Positions.class, posID);
+		
+		int sID = Integer.parseInt(studentID);
+		Student student = currentSession.get(Student.class, sID);
+		position.setChosen_student(studentID);
+		position.setAvailable(false);
+		student.setChosen(true);
+		return true;
 	}
 
 }
