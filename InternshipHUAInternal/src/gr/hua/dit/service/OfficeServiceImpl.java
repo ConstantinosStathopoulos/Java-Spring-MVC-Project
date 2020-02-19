@@ -37,4 +37,11 @@ public class OfficeServiceImpl implements OfficeService {
 		positionsDAO.updatePositions(id,department);
 	}
 
+	@Override
+	@Transactional
+	public List<Positions> getInternStudents() {
+	
+		return positionsDAO.getInternStudents();
+	}
+
 }

@@ -16,4 +16,5 @@ public interface PositionsDAO {
 	public List<Positions> seePositions( String compName);
 	public List<Student> StudentsForPosition( String compName, int posID);
 	public boolean saveStudent(int posID, String studentID);
+	public List<Positions> getInternStudents();
 }

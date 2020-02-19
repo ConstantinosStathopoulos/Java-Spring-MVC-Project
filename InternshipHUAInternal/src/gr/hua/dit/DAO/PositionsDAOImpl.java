@@ -95,6 +95,7 @@ public class PositionsDAOImpl implements PositionsDAO {
 		Positions position = new Positions();
 		position.setCategory(category);
 		position.setName(name);
+		position.setAvailable(true);
 		position.setChosen_student(null);
 
 		currentSession.save(position);
@@ -137,6 +138,15 @@ public class PositionsDAOImpl implements PositionsDAO {
 		position.setAvailable(false);
 		student.setChosen(true);
 		return true;
+	}
+
+	@Override
+	public List<Positions> getInternStudents() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Positions> query = currentSession.createQuery("from Positions where available=false", Positions.class);
+		List<Positions> positions = query.getResultList();
+
+		return positions;
 	}
 
 }

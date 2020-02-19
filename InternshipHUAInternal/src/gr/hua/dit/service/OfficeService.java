@@ -9,5 +9,6 @@ public interface OfficeService {
 	public List<Positions> getAllPositions();
 	public List<Positions> getAcceptedPositions();
 	public void updatePositions(int id,String department);
+	public List<Positions> getInternStudents();
 	
 }

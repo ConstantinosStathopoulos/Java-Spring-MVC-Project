@@ -88,5 +88,12 @@ public class CareerOfficeController {
 				System.out.println(Department);
 				return "redirect:/CareerOffice/Manage_Positions";
 			}
+		 @RequestMapping(value = "/StudentsForInternships", method = RequestMethod.GET)
+			public String InternStudents(Model model) {
+				List<Positions> positions = officeService.getInternStudents();
+		        // add the customers to the model
+		        model.addAttribute("positions",positions);
+				return "internStudents";
+			}
 
 }

@@ -52,6 +52,15 @@ body {
             </tr>
          </table>  
       </form:form>
+       <form:form method = "GET" action = "StudentsForInternships">
+         <table>
+            <tr>
+               <td>
+                  <input type = "submit" value = "Students For Internships"/>
+               </td>
+            </tr>
+         </table>  
+      </form:form>
       </div>
 <!--     </center> -->
    </body>

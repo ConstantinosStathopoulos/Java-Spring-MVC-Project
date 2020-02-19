@@ -34,6 +34,7 @@
 	<div class="navbar-primar">
 <%-- 		<sec:authorize access="isAuthenticated()"> --%>
 			<sec:authorize access="hasAnyRole('ROLE_OFFICE')">
+			<a href="<c:url value="/CareerOffice/StudentsForInternships"></c:url>" class="btn btn-link">Chosen Students For Internships</a>
 			<a href="/InternshipHUAInternal/CareerOffice/list" class="btn btn-link">Manage Students</a>
 			<a href="<c:url value="/CareerOffice/Manage_Positions"></c:url>" class="btn btn-link">Manage Positions</a>
 			<a href="<c:url value="/CareerOffice/"></c:url>" class="btn btn-link">Menu</a>		

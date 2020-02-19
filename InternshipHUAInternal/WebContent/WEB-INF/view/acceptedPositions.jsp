@@ -40,7 +40,7 @@ body {
                                 		<th>ID</th>
                                 		<th>Name</th>
                                         <th>Subject</th>
-                                        <th>Interest</th>
+                                        <th>Department</th>
                                 </tr>
                                 <!-- loop over and print our customers -->
                                 <c:forEach var="tempPositions" items="${positions}">
