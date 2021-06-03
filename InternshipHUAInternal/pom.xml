@@ -9,7 +9,7 @@
 	<properties>
 		<org.springframework.version>5.2.2.RELEASE</org.springframework.version>
 		<hibernate.version>5.4.10.Final</hibernate.version>
-		<org.springsecurity.version>5.2.1.RELEASE</org.springsecurity.version>
+		<org.springsecurity.version>5.2.10.RELEASE</org.springsecurity.version>
 	</properties>
 	<dependencies>
 		<!-- Servlet API -->
